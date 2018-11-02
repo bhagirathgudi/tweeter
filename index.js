@@ -13,9 +13,11 @@ var params = {screen_name: process.env.SCREEN_NAME};
 //         console.log(tweets);
 //     }
 // });
-
-client.post('statuses/update', {status: 'Cool, tweeting from nodejs function deployed on Microsoft Azure.'}, function(error, tweet, response){
-    if(!error) {
-        console.log(tweet);
-    }
-});
+module.exports = function(context, req) {
+    client.post('statuses/update', {status: 'Cool, tweeting from nodejs function deployed on Microsoft Azure.'}, function(error, tweet, response){
+        if(!error) {
+            console.log(tweet);
+        }
+    });
+    context.done();
+}
